@@ -128,7 +128,7 @@ const structuralElementToElement = (
     if (isListItem(el)) {
       const elListItemLevel = listItemLevel(el);
       if (
-        isListItem(last) &&
+        last && isListItem(last) &&
         (listItemBulletId(el) == listItemBulletId(last) || elListItemLevel > 0)
       ) {
         const lastListItemLevel = listItemLevel(last);

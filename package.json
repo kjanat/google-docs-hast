@@ -15,7 +15,7 @@
     "docs": "typedoc --options typedoc.cjs && cp assets/logo.jpg docs/assets/logo.jpg",
     "format": "eslint . --fix",
     "lint": "eslint .",
-    "prepare": "npm run build",
+    "prepare": "pnpm run build",
     "test": "vitest"
   },
   "files": [
@@ -37,7 +37,8 @@
   "dependencies": {
     "github-slugger": "^1.4.0",
     "hast-util-to-string": "^2.0.0",
-    "hastscript": "^7.0.2"
+    "hastscript": "^7.0.2",
+    "mdast-util-to-string": "^4.0.0"
   },
   "devDependencies": {
     "@googleapis/docs": "^0.4.2",
@@ -61,10 +62,12 @@
     "typedoc": "^0.23.17",
     "typescript": "^4.8.4",
     "unified": "^10.1.2",
+    "unist-util-visit": "^5.0.0",
     "vitest": "^0.14.2"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://wombat-dressing-room.appspot.com"
-  }
+  },
+  "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184"
 }

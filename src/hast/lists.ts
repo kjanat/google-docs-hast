@@ -25,21 +25,27 @@ export const isListItem = (el: docs_v1.Schema$StructuralElement): boolean => {
 };
 
 export const listItemLevel = (el: docs_v1.Schema$StructuralElement): number => {
-  return el.paragraph.bullet.nestingLevel ?? 0;
+  return el.paragraph?.bullet?.nestingLevel ?? 0;
 };
 export const listItemBulletId = (
   el: docs_v1.Schema$StructuralElement
 ): string => {
-  return el.paragraph.bullet.listId;
+  return el.paragraph?.bullet?.listId;
 };
 
 export const listElement = (
   el: docs_v1.Schema$StructuralElement,
   { doc }: Context
 ): Element => {
-  const { listId } = el.paragraph.bullet;
-  let { nestingLevel } = el.paragraph.bullet;
+  const { listId } = el.paragraph?.bullet || {};
+  let { nestingLevel } = el.paragraph?.bullet || {};
   nestingLevel = nestingLevel ?? 0;
+  
+  // Safety check for list existence
+  if (!listId || !doc.lists?.[listId]) {
+    return h("ul", { class: `nesting-level-${nestingLevel + 1}` });
+  }
+  
   const { glyphType, startNumber } =
     doc.lists[listId].listProperties.nestingLevels[nestingLevel];
 
